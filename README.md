@@ -38,21 +38,22 @@ Create and activate the Conda environment:
 conda env create -f environment.yml
 conda activate lab06-ship-it
 ```
+If the environment already exists, activate it instead of creating it
+again.
 
 Start the app:
 
 ```bash
 gradio app.py
 ```
-
-Open the local URL printed in the terminal.
-
-If the environment already exists, activate it instead of creating it
-again. If terminal activation is unavailable, run the app with:
+If `gradio app.py` is not recognized, the environment may not be
+active in your terminal.  
+Run the app directly in the Conda environment:
 
 ```bash
 conda run --no-capture-output -n lab06-ship-it gradio app.py
 ```
+Open the local URL printed in the terminal.
 
 The local environment uses Python 3.11. The Hugging Face configuration
 specifies Python 3.12.
@@ -184,14 +185,11 @@ For Hugging Face Spaces, the Gradio version is specified through
 
 ## Deployment
 
-The application currently runs locally using `gradio app.py`.
-A public Hugging Face Space has not yet been deployed.
+The app is deployed publicly on Hugging Face Spaces:
+[Open QuickBite Late Order Check](https://huggingface.co/spaces/SafaaAlhawasli/lab06-ship-it)
 
-During setup, the Create Space form for Safaa's account showed
-Gradio Spaces as requiring a paid plan. Deployment availability
-for the remaining group members still needs to be confirmed.
-
-A temporary Gradio sharing link is not a Hugging Face Space URL.
+Enter the order and proposed courier details, then click **Check order**
+to view the late and on-time delivery probabilities and voucher recommendation.
 
 ## Limitations
 
