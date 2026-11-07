@@ -25,8 +25,7 @@ def assess_order(*values):
     )
 
     return (
-        f"{action} "
-        f"(Decision threshold: {result['threshold']:.0%} late risk.)",
+        f"{action} (Decision threshold: {result['threshold']:.0%} late risk.)",
         f"{result['late_probability']:.1%}",
         f"{result['on_time_probability']:.1%}",
     )
