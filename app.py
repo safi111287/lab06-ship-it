@@ -1,6 +1,7 @@
 """Build the QuickBite interface and score orders through predict.py."""
 
 import gradio as gr
+import sys
 
 from predict import (
     CATEGORY_RULES,
@@ -8,6 +9,21 @@ from predict import (
     NUMERIC_RULES,
     predict_order,
 )
+
+# Hide only the known asyncio cleanup message; Keep all other errors visible.
+def filter_cleanup_error(error):
+    """Suppress only the known asyncio cleanup message."""
+    if (
+        isinstance(error.exc_value, ValueError)
+        and str(error.exc_value) == "Invalid file descriptor: -1"
+        and getattr(error.object, "__module__", "") == "asyncio.base_events"
+        and getattr(error.object, "__qualname__", "") == "BaseEventLoop.__del__"
+    ):
+        return
+    sys.__unraisablehook__(error)
+
+
+sys.unraisablehook = filter_cleanup_error
 
 
 def assess_order(*values):
